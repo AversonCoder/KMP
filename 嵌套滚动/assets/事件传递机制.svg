@@ -1,170 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550">
   <defs>
-    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    <linearGradient id="initialGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980B9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="finalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1ABC9C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16A085;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="eventGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:1" />
     </linearGradient>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
     </filter>
-    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    <marker id="arrowDown" markerWidth="10" markerHeight="7" refX="5" refY="7" orient="auto">
+      <polygon points="0 0, 10 0, 5 7" fill="#666"/>
+    </marker>
+    <marker id="arrowUp" markerWidth="10" markerHeight="7" refX="5" refY="0" orient="auto">
+      <polygon points="0 7, 10 7, 5 0" fill="#666"/>
     </marker>
   </defs>
   
   <!-- Title -->
-  <rect x="0" y="0" width="900" height="60" fill="url(#headerGrad)"/>
-  <text x="450" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white">
-    事件传递机制：三个阶段
+  <text x="400" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333">
+    Compose 触摸事件传递机制（三阶段）
   </text>
-  
-  <!-- Phase labels -->
-  <g transform="translate(50, 80)">
-    <!-- Phase 1: Initial -->
-    <rect x="0" y="0" width="250" height="480" rx="15" fill="#E3F2FD" filter="url(#shadow)"/>
-    <rect x="0" y="0" width="250" height="50" rx="15" fill="#2196F3"/>
-    <rect x="0" y="25" width="250" height="25" fill="#2196F3"/>
-    <text x="125" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
-      1️⃣ Initial Pass
-    </text>
-    <text x="125" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1976D2">
-      从外到内传递
-    </text>
-    
-    <!-- Hierarchy visualization -->
-    <g transform="translate(25, 100)">
-      <!-- Parent -->
-      <rect x="0" y="0" width="200" height="60" rx="8" fill="#BBDEFB" stroke="#64B5F6" stroke-width="2"/>
-      <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1565C0">父容器</text>
-      <text x="100" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1976D2">verticalScroll</text>
-      
-      <!-- Arrow down -->
-      <path d="M 100 60 L 100 80" stroke="#2196F3" stroke-width="2" marker-end="url(#arrow)"/>
-      <text x="115" y="75" font-family="Arial, sans-serif" font-size="10" fill="#2196F3">①</text>
-      
-      <!-- Child wrapper -->
-      <rect x="20" y="90" width="160" height="70" rx="8" fill="#90CAF9" stroke="#42A5F5" stroke-width="2"/>
-      <text x="100" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1565C0">Box</text>
-      <text x="100" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1976D2">容器</text>
-      
-      <!-- Arrow down -->
-      <path d="M 100 160 L 100 180" stroke="#2196F3" stroke-width="2" marker-end="url(#arrow)"/>
-      <text x="115" y="175" font-family="Arial, sans-serif" font-size="10" fill="#2196F3">②</text>
-      
-      <!-- KLineChart -->
-      <rect x="30" y="190" width="140" height="70" rx="8" fill="#64B5F6" stroke="#1E88E5" stroke-width="2"/>
-      <text x="100" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">KLineChart</text>
-      <text x="100" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">pointerInput</text>
-      <text x="100" y="253" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#E3F2FD">③ 到达目标</text>
-    </g>
-    
-    <text x="125" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">
-      父组件可以在这个阶段
-    </text>
-    <text x="125" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">
-      预先拦截事件
-    </text>
+
+  <!-- PointerEvent source -->
+  <g transform="translate(350, 60)">
+    <rect x="0" y="0" width="100" height="40" rx="20" fill="url(#eventGrad)" filter="url(#shadow)"/>
+    <text x="50" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">PointerEvent</text>
   </g>
   
-  <!-- Phase 2: Main -->
-  <g transform="translate(325, 80)">
-    <rect x="0" y="0" width="250" height="480" rx="15" fill="#FFF3E0" filter="url(#shadow)"/>
-    <rect x="0" y="0" width="250" height="50" rx="15" fill="#FF9800"/>
-    <rect x="0" y="25" width="250" height="25" fill="#FF9800"/>
-    <text x="125" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
-      2️⃣ Main Pass
-    </text>
-    <text x="125" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#E65100">
-      从内到外传递 (事件处理)
-    </text>
+  <!-- Arrow down to Initial -->
+  <line x1="400" y1="100" x2="400" y2="130" stroke="#666" stroke-width="2" marker-end="url(#arrowDown)"/>
+  
+  <!-- Component hierarchy visualization -->
+  <g transform="translate(100, 140)">
+    <!-- Outer container (Parent) -->
+    <rect x="0" y="0" width="600" height="350" rx="15" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+    <text x="300" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#666">父组件 (LazyColumn)</text>
     
-    <!-- Hierarchy visualization -->
-    <g transform="translate(25, 100)">
-      <!-- KLineChart -->
-      <rect x="30" y="0" width="140" height="80" rx="8" fill="#FFB74D" stroke="#FF9800" stroke-width="2"/>
-      <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">KLineChart</text>
-      <text x="100" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">处理事件 ①</text>
-      <text x="100" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFF3E0">consume() ?</text>
-      
-      <!-- Arrow up -->
-      <path d="M 100 80 L 100 110" stroke="#FF9800" stroke-width="2" marker-end="url(#arrow)"/>
-      <text x="115" y="100" font-family="Arial, sans-serif" font-size="10" fill="#FF9800">②</text>
-      
-      <!-- Box -->
-      <rect x="20" y="120" width="160" height="60" rx="8" fill="#FFCC80" stroke="#FFA726" stroke-width="2"/>
-      <text x="100" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#E65100">Box</text>
-      <text x="100" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#F57C00">处理未消费事件</text>
-      
-      <!-- Arrow up -->
-      <path d="M 100 180 L 100 210" stroke="#FF9800" stroke-width="2" marker-end="url(#arrow)"/>
-      <text x="115" y="200" font-family="Arial, sans-serif" font-size="10" fill="#FF9800">③</text>
-      
-      <!-- Parent -->
-      <rect x="0" y="220" width="200" height="60" rx="8" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
-      <text x="100" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#E65100">父容器</text>
-      <text x="100" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#F57C00">处理剩余事件</text>
-    </g>
+    <!-- Middle container -->
+    <rect x="40" y="45" width="520" height="280" rx="12" fill="#fff" stroke="#e9ecef" stroke-width="2"/>
+    <text x="300" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#888">中间层</text>
     
-    <rect x="20" y="390" width="210" height="70" rx="8" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
-    <text x="125" y="415" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#E65100" font-weight="bold">
-      ⚠️ 关键点
-    </text>
-    <text x="125" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">
-      如果子组件调用 consume()
-    </text>
-    <text x="125" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">
-      父组件就收不到事件！
-    </text>
+    <!-- Inner component (KLineChart) -->
+    <rect x="80" y="90" width="440" height="210" rx="10" fill="#FFF5E6" stroke="#F5A623" stroke-width="2"/>
+    <text x="300" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#D48806" font-weight="bold">子组件 (KLineChart)</text>
   </g>
   
-  <!-- Phase 3: Final -->
-  <g transform="translate(600, 80)">
-    <rect x="0" y="0" width="250" height="480" rx="15" fill="#E8F5E9" filter="url(#shadow)"/>
-    <rect x="0" y="0" width="250" height="50" rx="15" fill="#4CAF50"/>
-    <rect x="0" y="25" width="250" height="25" fill="#4CAF50"/>
-    <text x="125" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">
-      3️⃣ Final Pass
-    </text>
-    <text x="125" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2E7D32">
-      从外到内 (最后机会)
-    </text>
+  <!-- Three Passes -->
+  <!-- Initial Pass -->
+  <g transform="translate(50, 180)">
+    <rect x="0" y="0" width="140" height="100" rx="10" fill="url(#initialGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">Initial Pass</text>
+    <text x="70" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">从外到内</text>
+    <text x="70" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">可以"偷看"事件</text>
+    <text x="70" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">拦截优先</text>
     
-    <!-- Hierarchy visualization -->
-    <g transform="translate(25, 100)">
-      <!-- Parent -->
-      <rect x="0" y="0" width="200" height="60" rx="8" fill="#A5D6A7" stroke="#66BB6A" stroke-width="2"/>
-      <text x="100" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1B5E20">父容器</text>
-      <text x="100" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2E7D32">最后检查 ①</text>
-      
-      <!-- Arrow down -->
-      <path d="M 100 60 L 100 80" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrow)"/>
-      
-      <!-- Box -->
-      <rect x="20" y="90" width="160" height="60" rx="8" fill="#81C784" stroke="#4CAF50" stroke-width="2"/>
-      <text x="100" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1B5E20">Box</text>
-      <text x="100" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2E7D32">②</text>
-      
-      <!-- Arrow down -->
-      <path d="M 100 150 L 100 170" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrow)"/>
-      
-      <!-- KLineChart -->
-      <rect x="30" y="180" width="140" height="60" rx="8" fill="#66BB6A" stroke="#43A047" stroke-width="2"/>
-      <text x="100" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" font-weight="bold">KLineChart</text>
-      <text x="100" y="225" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">③ 完成</text>
-    </g>
-    
-    <text x="125" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">
-      很少使用，主要用于
-    </text>
-    <text x="125" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">
-      特殊的后处理逻辑
-    </text>
+    <!-- Arrow pointing inward -->
+    <path d="M 150 50 L 200 50 L 200 120 L 250 120" stroke="#9B59B6" stroke-width="3" fill="none" marker-end="url(#arrowDown)"/>
+    <text x="225" y="85" font-family="Arial, sans-serif" font-size="20" fill="#9B59B6">↘</text>
   </g>
   
-  <!-- Summary -->
-  <rect x="50" y="570" width="800" height="25" rx="5" fill="#F5F5F5"/>
-  <text x="450" y="588" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">
-    理解事件传递的三个阶段，是解决嵌套滚动冲突的基础
-  </text>
+  <!-- Main Pass -->
+  <g transform="translate(330, 280)">
+    <rect x="0" y="0" width="140" height="100" rx="10" fill="url(#mainGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">Main Pass</text>
+    <text x="70" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">从内到外</text>
+    <text x="70" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">主要处理阶段</text>
+    <text x="70" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">子组件优先</text>
+    
+    <!-- Arrow pointing outward -->
+    <text x="-30" y="50" font-family="Arial, sans-serif" font-size="20" fill="#3498DB">↖</text>
+  </g>
+  
+  <!-- Final Pass -->
+  <g transform="translate(610, 180)">
+    <rect x="0" y="0" width="140" height="100" rx="10" fill="url(#finalGrad)" filter="url(#shadow)"/>
+    <text x="70" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">Final Pass</text>
+    <text x="70" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)">从外到内</text>
+    <text x="70" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">最终处理</text>
+    <text x="70" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">清理工作</text>
+    
+    <!-- Arrow pointing inward -->
+    <text x="-30" y="50" font-family="Arial, sans-serif" font-size="20" fill="#1ABC9C">↘</text>
+  </g>
+  
+  <!-- Flow arrows between passes -->
+  <g transform="translate(200, 420)">
+    <line x1="0" y1="0" x2="150" y2="0" stroke="#666" stroke-width="2"/>
+    <line x1="200" y1="0" x2="350" y2="0" stroke="#666" stroke-width="2"/>
+    <circle cx="175" cy="0" r="15" fill="#9B59B6"/>
+    <text x="175" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">1</text>
+    <circle cx="375" cy="0" r="15" fill="#3498DB"/>
+    <text x="375" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">2</text>
+    <circle cx="500" cy="0" r="15" fill="#1ABC9C"/>
+    <text x="500" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">3</text>
+    <line x1="400" y1="0" x2="475" y2="0" stroke="#666" stroke-width="2"/>
+  </g>
+  
+  <!-- Key insight box -->
+  <g transform="translate(150, 500)">
+    <rect x="0" y="0" width="500" height="40" rx="8" fill="#FFF3CD" stroke="#FFC107" stroke-width="1"/>
+    <text x="20" y="25" font-family="Arial, sans-serif" font-size="12" fill="#856404">
+      💡 关键：使用 Main Pass 可以让 LazyColumn 先处理事件，避免拦截垂直滚动
+    </text>
+  </g>
 </svg>

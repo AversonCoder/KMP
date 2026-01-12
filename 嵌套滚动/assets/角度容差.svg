@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+  <defs>
+    <linearGradient id="horizontalZone" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#3498DB;stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="verticalZone" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#27AE60;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Title -->
+  <text x="300" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#333">
+    角度容差图解
+  </text>
+  <text x="300" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    tolerance = 0.5 → |dx| > |dy| × 2 为水平
+  </text>
+  
+  <!-- Coordinate system -->
+  <g transform="translate(300, 280)">
+    <!-- Background zones -->
+    <!-- Horizontal zone (left and right) -->
+    <path d="M -200 0 L -200 -100 L 0 0 L -200 100 Z" fill="#3498DB" opacity="0.15"/>
+    <path d="M 200 0 L 200 -100 L 0 0 L 200 100 Z" fill="#3498DB" opacity="0.15"/>
+    
+    <!-- Vertical zone (top and bottom) -->
+    <path d="M 0 -200 L -100 -200 L 0 0 L 100 -200 Z" fill="#27AE60" opacity="0.15"/>
+    <path d="M 0 200 L -100 200 L 0 0 L 100 200 Z" fill="#27AE60" opacity="0.15"/>
+    
+    <!-- Axes -->
+    <line x1="-220" y1="0" x2="220" y2="0" stroke="#333" stroke-width="2"/>
+    <line x1="0" y1="-220" x2="0" y2="220" stroke="#333" stroke-width="2"/>
+    
+    <!-- Axis labels -->
+    <text x="230" y="5" font-family="Arial, sans-serif" font-size="12" fill="#333">dx</text>
+    <text x="5" y="-210" font-family="Arial, sans-serif" font-size="12" fill="#333">dy</text>
+    
+    <!-- Angle lines (63 degrees) -->
+    <line x1="0" y1="0" x2="200" y2="-100" stroke="#3498DB" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="0" y1="0" x2="200" y2="100" stroke="#3498DB" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="0" y1="0" x2="-200" y2="-100" stroke="#3498DB" stroke-width="2" stroke-dasharray="5,5"/>
+    <line x1="0" y1="0" x2="-200" y2="100" stroke="#3498DB" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- Angle arc -->
+    <path d="M 60 0 A 60 60 0 0 0 54 -27" stroke="#3498DB" stroke-width="2" fill="none"/>
+    <text x="75" y="-10" font-family="Arial, sans-serif" font-size="11" fill="#3498DB">~27°</text>
+    
+    <!-- 90 degree label -->
+    <text x="10" y="-180" font-family="Arial, sans-serif" font-size="12" fill="#27AE60" font-weight="bold">90°</text>
+    <text x="-35" y="-165" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">(纯垂直)</text>
+    
+    <!-- 0 degree label -->
+    <text x="180" y="20" font-family="Arial, sans-serif" font-size="12" fill="#3498DB" font-weight="bold">0°</text>
+    <text x="165" y="35" font-family="Arial, sans-serif" font-size="10" fill="#3498DB">(纯水平)</text>
+    
+    <!-- 63 degree label -->
+    <text x="140" y="-90" font-family="Arial, sans-serif" font-size="11" fill="#E67E22" font-weight="bold">~63°</text>
+    
+    <!-- Zone labels -->
+    <rect x="100" y="-30" width="80" height="25" rx="5" fill="#3498DB" filter="url(#shadow)"/>
+    <text x="140" y="-12" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">水平区域</text>
+    
+    <rect x="-40" y="-150" width="80" height="25" rx="5" fill="#27AE60" filter="url(#shadow)"/>
+    <text x="0" y="-132" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">垂直区域</text>
+    
+    <!-- Example vectors -->
+    <!-- Horizontal example -->
+    <line x1="0" y1="0" x2="150" y2="-30" stroke="#3498DB" stroke-width="3"/>
+    <circle cx="150" cy="-30" r="6" fill="#3498DB"/>
+    <text x="160" y="-35" font-family="Arial, sans-serif" font-size="10" fill="#3498DB">✓ 水平</text>
+    
+    <!-- Vertical example -->
+    <line x1="0" y1="0" x2="40" y2="-120" stroke="#27AE60" stroke-width="3"/>
+    <circle cx="40" cy="-120" r="6" fill="#27AE60"/>
+    <text x="50" y="-125" font-family="Arial, sans-serif" font-size="10" fill="#27AE60">✓ 垂直</text>
+  </g>
+  
+  <!-- Legend -->
+  <g transform="translate(50, 420)">
+    <rect x="0" y="0" width="500" height="70" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+    <text x="250" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">判断规则</text>
+    
+    <rect x="20" y="35" width="15" height="15" rx="3" fill="#3498DB"/>
+    <text x="45" y="47" font-family="Arial, sans-serif" font-size="11" fill="#333">水平区域：|dx| > |dy| × 2</text>
+    
+    <rect x="260" y="35" width="15" height="15" rx="3" fill="#27AE60"/>
+    <text x="285" y="47" font-family="Arial, sans-serif" font-size="11" fill="#333">垂直区域：其他情况</text>
+  </g>
+</svg>
